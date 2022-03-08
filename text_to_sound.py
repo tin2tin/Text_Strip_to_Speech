@@ -17,7 +17,7 @@ else:
     output_dir = r'/tmp/'
 
 
-def sound_strip_from_text(tts, start_frame, accent_enum):
+def sound_strip_from_text(tts, start_frame, accent_enum, chan):
 
     top_level_domain = accents_domain[int(accent_enum)]
     language = accents_lang[int(accent_enum)]
@@ -39,17 +39,8 @@ def sound_strip_from_text(tts, start_frame, accent_enum):
         scene.sequence_editor_create()
     seq = scene.sequence_editor
 
-    sequences = bpy.context.sequences
-    if not sequences:
-        addSceneChannel = 1
-    else:
-        channels = [s.channel for s in sequences]
-        channels = sorted(list(set(channels)))
-        empty_channel = channels[-1] + 1
-        addSceneChannel = empty_channel
-
     #obj = bpy.ops.sequencer.sound_strip_add(filepath=output_name, frame_start=start_frame)
     obj = seq.sequences.new_sound(
-        tts, filepath=output_name, channel=addSceneChannel, frame_start=start_frame)
+        tts, filepath=output_name, channel=chan, frame_start=start_frame)
 
     return obj

@@ -78,7 +78,7 @@ class Time():
 
 class Caption():
 
-    def __init__(self, cc_type, name, text, start_time, end_time, accent):
+    def __init__(self, cc_type, name, text, start_time, end_time, accent, chan):
         self.rearrange = False
         self.cc_type = cc_type  # 0 : default, 1 : person, 2 : event
         self.accent = accent
@@ -90,9 +90,9 @@ class Caption():
 
         if self.frame_start != -1:
             self.sound_strip = tts.sound_strip_from_text(
-                text, self.frame_start, self.accent)
+                text, self.frame_start, self.accent, chan)
         else:
-            self.sound_strip = tts.sound_strip_from_text(text, 0, self.accent)
+            self.sound_strip = tts.sound_strip_from_text(text, 0, self.accent, chan)
 
     def update_timecode(self):
         self.start_time.frame_to_time(self.sound_strip.frame_start)
@@ -113,15 +113,24 @@ class StripToSpeechOperator(bpy.types.Operator):
 
     def execute(self, context):
         global global_captions
+
+        sequences = bpy.context.sequences
+        if not sequences:
+            chan = 1
+        else:
+            channels = [s.channel for s in sequences]
+            channels = sorted(list(set(channels)))
+            empty_channel = channels[-1] + 1
+            chan = empty_channel
+
         strips = context.selected_sequences
         for strip in strips:
             if strip.type == 'TEXT':
                 if strip.text:
                     global_captions.append(
                         Caption(0, '', strip.text,
-                                Time(
-                                    0, 0, strip.frame_start / bpy.context.scene.render.fps, 0), Time(-1, -1, -1, -1),
-                                context.scene.text_to_speech.accent_enumerator))
+                                Time(0, 0, strip.frame_start / bpy.context.scene.render.fps, 0), Time(-1, -1, -1, -1),
+                                context.scene.text_to_speech.accent_enumerator, chan))
 
         self.report({'INFO'}, "FINISHED")
         return {'FINISHED'}
