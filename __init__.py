@@ -62,7 +62,9 @@ def panel_text_to_speech(self, context):
         layout.separator()
         layout.operator('text_to_speech.text_strip', text='Convert to Speech')
         layout.prop_menu_enum(context.scene.text_to_speech,
-                              'accent_enumerator', text="Speaker")
+                              'language_enumerator', text="Language")
+        layout.prop_menu_enum(context.scene.text_to_speech,
+                              'accent_enumerator', text="Accent")
 
 
 classes = (

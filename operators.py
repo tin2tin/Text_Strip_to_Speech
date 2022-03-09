@@ -78,10 +78,11 @@ class Time():
 
 class Caption():
 
-    def __init__(self, cc_type, name, text, start_time, end_time, accent, chan):
+    def __init__(self, cc_type, name, text, start_time, end_time, language, accent, chan):
         self.rearrange = False
         self.cc_type = cc_type  # 0 : default, 1 : person, 2 : event
         self.accent = accent
+        self.language = language
         self.name = name
         self.text = text
         self.start_time = start_time
@@ -90,9 +91,9 @@ class Caption():
 
         if self.frame_start != -1:
             self.sound_strip = tts.sound_strip_from_text(
-                text, self.frame_start, self.accent, chan)
+                text, self.frame_start, self.language, self.accent, chan)
         else:
-            self.sound_strip = tts.sound_strip_from_text(text, 0, self.accent, chan)
+            self.sound_strip = tts.sound_strip_from_text(text, 0, self.language, self.accent, chan)
 
     def update_timecode(self):
         self.start_time.frame_to_time(self.sound_strip.frame_start)
@@ -129,7 +130,7 @@ class StripToSpeechOperator(bpy.types.Operator):
                 if strip.text:
                     global_captions.append(
                         Caption(0, '', strip.text,
-                                Time(0, 0, strip.frame_start / bpy.context.scene.render.fps, 0), Time(-1, -1, -1, -1),
+                                Time(0, 0, strip.frame_start / bpy.context.scene.render.fps, 0), Time(-1, -1, -1, -1), context.scene.text_to_speech.language_enumerator,
                                 context.scene.text_to_speech.accent_enumerator, chan))
 
         self.report({'INFO'}, "FINISHED")
