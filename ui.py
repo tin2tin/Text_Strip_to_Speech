@@ -12,20 +12,21 @@ class TextToSpeechSettings(bpy.types.PropertyGroup):
 
     accent_enumerator: bpy.props.EnumProperty(
         name="",
-        description="Accent options for speakers",
-        items=[('0', "Australia", ""),
-               ('1', "United Kingdom", ""),
-               ('2', "Canada", ""),
-               ('3', "India", ""),
-               ('4', "Ireland", ""),
-               ('5', "South Africa", ""),
-               ('6', "French Canada", ""),
-               ('7', "France", ""),
-               ('8', "Brazil", ""),
-               ('9', "Portugal", ""),
-               ('10', "Mexico", ""),
-               ('11', "Spain", ""),
-               ('12', "Spain (US)", "")])
+        description="Accent must match the language setting to work",
+        items=[('0', "English Australia", ""),
+               ('1', "English United Kingdom", ""),
+               ('2', "English Canada", ""),
+               ('3', "English America", ""),               
+               ('4', "English India", ""),
+               ('5', "English Ireland", ""),
+               ('6', "English South Africa", ""),
+               ('7', "French Canada", ""),
+               ('8', "French France", ""),
+               ('9', "Portuguese Brazil", ""),
+               ('10', "Portuguese Portugal", ""),
+               ('11', "Spanish Mexico", ""),
+               ('12', "Spanish Spain", ""),
+               ('13', "Spanish US)", "")])
 
     language_enumerator: bpy.props.EnumProperty(
         name="",

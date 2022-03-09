@@ -6,8 +6,8 @@ import time
 import bpy
 #from bpy import context
 
-accents_domain = ["com.au", "co.uk", "com", "ca", "co.in", "ie",
-                  "co.za", "ca", "fr", "com.br", "pt", "com.mx", "es", "com"]
+accents_domain = ["com.au", "co.uk", "ca", "us", "co.in", "ie",
+                  "co.za", "ca", "fr", "com.br", "pt", "com.mx", "es", "us"]
 accents_lang = ["en", "en", "en", "en", "en", "en",
                 "en", "fr", "fr", "pt", "pt", "es", "es", "es"]
 language_lang = [("af"), ("sq"), ("ar"), ("hy"), ("bn"), ("bs"), ("bg"), ("my"), ("ca"), ("zh-CN"), ("zh-TW"), ("hr"), ("cs"), ("da"), ("nl"), ("en"), ("eo"), ("et"), ("tl"), ("fi"), ("fr"), ("de"), ("el"), ("gu"), ("hi"), ("hu"), ("is"), ("id"), ("it"), ("ja"), ("jw"), ("kn"), ("km"), ("ko"), ("la"), ("lv"), ("mk"), ("ms"), ("ml"), ("mr"), ("ne"), ("no"), ("pl"), ("pt"), ("ro"), ("ru"), ("sr"), ("si"), ("sk"), ("es"), ("su"), ("sw"), ("sv"), ("ta"), ("te"), ("th"), ("tr"), ("uk"), ("ur"), ("vi"), ("cy")]
