@@ -6,18 +6,15 @@ from . import operators
 import os
 import sys
 import bpy
-from re import T
-from numbers import Number
 bl_info = {
-    "name": "Text Strips To Speech",
-    "description": "Turns text strips into speech",
+    "name": "Text Strips to Speech",
     "author": "Mark Lagana, tintwotin",
-    "version": (1, 0),
-    "blender": (2, 93, 4),
-    "location": "SEQUENCE_EDITOR > Select Text Strip > Strip Menu > Convert to Speech",
+    "version": (0, 1, 0),
+    "blender": (3, 00, 0),
+    "description": "Turns text strips into speech",
+    "location": "Sequence Editor > Select Text Strip > Strip Menu > Convert to Speech",
     "warning": "",
-    "doc_url": "",
-    "support": "DEV",
+    "tracker_url": "",
     "category": "Sequencer",
 }
 
@@ -92,3 +89,4 @@ def unregister():
 
 if __name__ == '__main__':
     register()
+
