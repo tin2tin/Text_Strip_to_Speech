@@ -21,7 +21,7 @@ bl_info = {
 try:
     import gtts
 
-except ModuleNotFoundError:
+except ImportError:
     print("Installing gtts...")
     import subprocess
     import bpy
