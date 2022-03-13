@@ -6,6 +6,8 @@ from . import operators
 import os
 import sys
 import bpy
+import subprocess
+import site
 bl_info = {
     "name": "Text Strips to Speech",
     "author": "Mark Lagana, tintwotin",
@@ -17,39 +19,23 @@ bl_info = {
     "tracker_url": "",
     "category": "Sequencer",
 }
+app_path = site.USER_SITE
+if app_path not in sys.path:
+    sys.path.append(app_path)
+pybin = sys.executable  # bpy.app.binary_path_python # Use for 2.83
 
 try:
-    import gtts
-
+    subprocess.call([pybin, "-m", "ensurepip"])
 except ImportError:
-    print("Installing gtts...")
-    import subprocess
-    import bpy
-    import os
-    from pathlib import Path
-
-    if bpy.app.version < (2, 92, 0):
-        py_exec = bpy.app.binary_path_python
-        subprocess.call([str(py_exec), "-m", "ensurepip", "--user"])
-        subprocess.call([str(py_exec), "-m", "pip",
-                         "install", "--upgrade", "pip"])
-        subprocess.call([str(py_exec), "-m", "pip",
-                         "install", "--user", "gtts"])
-    else:
-        import sys
-        py_exec = str(sys.executable)
-        lib = os.path.join(Path(py_exec).parent.parent, "lib")
-        subprocess.call([py_exec, "-m", "ensurepip", "--user"])
-        subprocess.call([py_exec, "-m", "pip", "install", "--upgrade", "pip"])
-        subprocess.call([py_exec, "-m", "pip", "install",
-                         f"--target={str(lib)}", "gtts"])
-
-        try:
-            import gtts
-        except PermissionError:
-            print("To install, right click the Blender icon and run as Administrator")
-        except:
-            print("Error installing gtts")
+    pass
+try:
+    import gtts
+except ImportError:
+    subprocess.check_call([pybin, "-m", "pip", "install", "gtts"])
+try:
+    import gtts
+except ImportError:
+    print("Installation of the Media Info module failed")
 
 
 def panel_text_to_speech(self, context):
