@@ -13,4 +13,4 @@ Use Menu > Strip > Convert to Speech/Speaker to execute the operator.
 Afrikaans, Albanian, Arabic, Armenian, Bangla, Bosnian, Bulgarian, Burmese, Catalan, Chinese Simplified, Chinese Traditional, Croatian, Czech, Danish, Dutch, English, Esperanto, Estonian, Filipino, Finnish, French, German , Greek, Gujarati, Hindi, Hungarian, Icelandic, Indonesian, Italian, Japanese, Javanese, Kannada, Khmer, Korean, Latin, Latvian, Macedonian, Malay, Malayalam, Marathi, Nepali, Norwegian, Polish, Portuguese, Romanian, Russian, Serbian, Sinhala, Slovak, Spanish, Sudanese, Swahili, Swedish, Tamil, Telugu, Thai, Turkish, Ukranian, Urdu, Vietnamese, Welsh
 
 ## Disclaimer
-This is a stripped down version of Mark Lagana's Text to Speech add-on. This version is only for converting text strips to speech.
+This is a stripped down version of Mark Lagana's Text to Speech add-on: https://github.com/technisculpt/blender-text-to-speech
