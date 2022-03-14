@@ -37,7 +37,7 @@ def sound_strip_from_text(tts, start_frame, language_enum, accent_enum, chan):
         except ImportError:
             pass
         print("Installing: gTTS module")
-        subprocess.check_call([pybin, "-m", "pip", "install", "gtts", "-no-warn-script-location"])
+        subprocess.check_call([pybin, "-m", "pip", "install", "gtts"])
         try:
             from gtts import gTTS
         except ModuleNotFoundError:
