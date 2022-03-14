@@ -1,5 +1,5 @@
 from pathlib import Path
-from gtts import gTTS
+#from gtts import gTTS
 import os
 import time
 
@@ -20,6 +20,28 @@ else:
 
 
 def sound_strip_from_text(tts, start_frame, language_enum, accent_enum, chan):
+    try:
+        from gtts import gTTS
+    except ModuleNotFoundError:
+        import site
+        import subprocess
+        import sys
+        app_path = site.USER_SITE
+        if app_path not in sys.path:
+            sys.path.append(app_path)
+        pybin = sys.executable  # bpy.app.binary_path_python # Use for 2.83
+
+        print("Ensuring: pip")
+        try:
+            subprocess.call([pybin, "-m", "ensurepip"])
+        except ImportError:
+            pass
+        print("Installing: gTTS module")
+        subprocess.check_call([pybin, "-m", "pip", "install", "gtts", "-no-warn-script-location"])
+        try:
+            from gtts import gTTS
+        except ModuleNotFoundError:
+            print("Installation of the gTTS module failed")
 
     top_level_domain = accents_domain[int(accent_enum)]
     # language = accents_lang[int(accent_enum)]
