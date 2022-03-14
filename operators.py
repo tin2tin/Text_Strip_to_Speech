@@ -114,7 +114,7 @@ class StripToSpeechOperator(bpy.types.Operator):
 
     def execute(self, context):
         global global_captions
-
+        self.report({'INFO'}, "Text to Speech: Started.")
         sequences = bpy.context.sequences
         if not sequences:
             chan = 1
@@ -133,5 +133,5 @@ class StripToSpeechOperator(bpy.types.Operator):
                                 Time(0, 0, strip.frame_start / bpy.context.scene.render.fps, 0), Time(-1, -1, -1, -1), context.scene.text_to_speech.language_enumerator,
                                 context.scene.text_to_speech.accent_enumerator, chan))
 
-        self.report({'INFO'}, "Text Strips to Speech finished.")
+        self.report({'INFO'}, "Text to Speech: Finished.")
         return {'FINISHED'}
