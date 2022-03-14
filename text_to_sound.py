@@ -2,7 +2,7 @@ from pathlib import Path
 #from gtts import gTTS
 import os
 import time
-
+import re
 import bpy
 #from bpy import context
 
@@ -18,6 +18,16 @@ if os.name == 'nt':
 else:
     output_dir = r'/tmp/'
 
+def clean_filename(string):
+    """
+    Sanitize a string to be used as a filename.
+    """
+    string = string.replace(':', '_').replace('/', '_').replace('\x00', '_')
+
+    string = re.sub('[\n\\\*><?\"|\t]', '', string)
+    string = string.strip()
+
+    return string
 
 def sound_strip_from_text(tts, start_frame, language_enum, accent_enum, chan):
     try:
@@ -48,10 +58,10 @@ def sound_strip_from_text(tts, start_frame, language_enum, accent_enum, chan):
     language = language_lang[int(language_enum)-1]
 
     if os.name == 'nt':
-        output_name = output_dir + '\\' + tts + \
+        output_name = output_dir + '\\' + clean_filename(tts) + \
             time.strftime("%Y%m%d-%H%M%S") + ".mp3"
     else:
-        output_name = output_dir + '/' + tts + \
+        output_name = output_dir + '/' + clean_filename(tts) + \
             time.strftime("%Y%m%d-%H%M%S") + ".mp3"
 
     ttmp3 = gTTS(text=tts, lang=language, tld=top_level_domain)
@@ -64,8 +74,7 @@ def sound_strip_from_text(tts, start_frame, language_enum, accent_enum, chan):
         scene.sequence_editor_create()
     seq = scene.sequence_editor
 
-    #obj = bpy.ops.sequencer.sound_strip_add(filepath=output_name, frame_start=start_frame)
     obj = seq.sequences.new_sound(
-        tts, filepath=output_name, channel=chan, frame_start=start_frame)
+        tts, filepath=output_name, channel=chan, frame_start=int(start_frame))
 
     return obj
