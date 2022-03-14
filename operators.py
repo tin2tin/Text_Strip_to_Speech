@@ -130,7 +130,7 @@ class StripToSpeechOperator(bpy.types.Operator):
                 if strip.text:
                     global_captions.append(
                         Caption(0, '', strip.text,
-                                Time(0, 0, strip.frame_start / bpy.context.scene.render.fps, 0), Time(-1, -1, -1, -1), context.scene.text_to_speech.language_enumerator,
+                                Time(0, 0, int(strip.frame_start / bpy.context.scene.render.fps), 0), Time(-1, -1, -1, -1), context.scene.text_to_speech.language_enumerator,
                                 context.scene.text_to_speech.accent_enumerator, chan))
 
         self.report({'INFO'}, "Text to Speech: Finished.")
