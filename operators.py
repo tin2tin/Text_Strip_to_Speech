@@ -133,5 +133,5 @@ class StripToSpeechOperator(bpy.types.Operator):
                                 Time(0, 0, strip.frame_start / bpy.context.scene.render.fps, 0), Time(-1, -1, -1, -1), context.scene.text_to_speech.language_enumerator,
                                 context.scene.text_to_speech.accent_enumerator, chan))
 
-        self.report({'INFO'}, "Speech strips has been added")
+        self.report({'INFO'}, "Text Strips to Speech finished.")
         return {'FINISHED'}
