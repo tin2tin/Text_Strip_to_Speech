@@ -21,14 +21,15 @@ bl_info = {
 
 def panel_text_to_speech(self, context):
     strip = context.active_sequence_strip
-    if strip.type == 'TEXT':
-        layout = self.layout
-        layout.separator()
-        layout.operator('text_to_speech.text_strip', text='Convert to Speech')
-        layout.prop_menu_enum(context.scene.text_to_speech,
-                              'language_enumerator', text="Language")
-        layout.prop_menu_enum(context.scene.text_to_speech,
-                              'accent_enumerator', text="Accent")
+    if strip:
+        if strip.type == 'TEXT':
+            layout = self.layout
+            layout.separator()
+            layout.operator('text_to_speech.text_strip', text='Convert to Speech')
+            layout.prop_menu_enum(context.scene.text_to_speech,
+                                  'language_enumerator', text="Language")
+            layout.prop_menu_enum(context.scene.text_to_speech,
+                                  'accent_enumerator', text="Accent")
 
 
 classes = (
