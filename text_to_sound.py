@@ -64,7 +64,7 @@ def sound_strip_from_text(tts, start_frame, language_enum, accent_enum, chan):
         output_name = output_dir + '/' + clean_filename(tts) + \
             time.strftime("%Y%m%d-%H%M%S") + ".mp3"
 
-    ttmp3 = gTTS(text=tts, lang=language, tld=top_level_domain)
+    ttmp3 = gTTS(text=tts, lang=language, tld=top_level_domain, slow=False)
     ttmp3.save(output_name)
 
     context = bpy.context
