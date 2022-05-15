@@ -1,4 +1,4 @@
-# Text Strip to Speech
+# Blender Text Strip to Speech
 Convert Blender Video Sequence Editor text strips to sound strips with speech.
 
 ## Installation
