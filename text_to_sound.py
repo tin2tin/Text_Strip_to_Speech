@@ -22,11 +22,9 @@ def clean_filename(string):
     """
     Sanitize a string to be used as a filename.
     """
-    string = string.replace(':', '_').replace('/', '_').replace('\x00', '_')
-
+    string = string.replace(':', '_').replace('/', '_').replace('\x00', '_').replace(' ', '_')[:10]
     string = re.sub('[\n\\\*><?\"|\t]', '', string)
     string = string.strip()
-    string = string[:10]
 
     return string
 
