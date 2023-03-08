@@ -25,6 +25,7 @@ def clean_filename(string):
     string = string.replace(':', '_').replace('/', '_').replace('\x00', '_')
 
     string = re.sub('[\n\\\*><?\"|\t]', '', string)
+    string = string[:10]
     string = string.strip()
 
     return string
