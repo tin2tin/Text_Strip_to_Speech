@@ -11,7 +11,7 @@ bl_info = {
     "name": "Text Strips to Speech",
     "author": "Mark Lagana, tintwotin",
     "version": (0, 1, 0),
-    "blender": (3, 00, 0),
+    "blender": (3, 0, 0),
     "description": "Turns text strips into speech",
     "location": "Sequence Editor > Select Text Strip > Strip Menu > Convert to Speech",
     "warning": "",
